@@ -103,8 +103,13 @@
 		$(".button").mousedown(function () { this.style.background = "rgba(35,140,173, 0.5)"; });
 		$(".button").mouseup(function () { this.style.background = ""; });
 
-
-
+		$("body").keypress(function (e) {
+			var c = String.fromCharCode(e.which);
+			var t = $(".txt")[0].innerText;
+			var tc = String(t) + String(c);
+			console.log(tc);
+			$(".txt").text(tc);
+		});
 
 	</script>
 </html>

@@ -14,6 +14,7 @@ body {
 	font-size: 3em;
 	background-color: rgba(35,140,173, 1);
 	box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.35);
+	word-wrap: break-word;
 }
 .page-right input {
 	margin: 10px;
@@ -121,6 +122,7 @@ h1 {
 	height: 150px;
 	border: 2px solid #53565b;
 	background: #e4eff5;;
+	word-wrap: break-word;
 }
 .manchinh h6{
 	font-size: 14px;
@@ -257,9 +259,9 @@ span {
 
 @font-face {
 	font-family: nokiabt;
-	src: url('https://dl.dropboxusercontent.com/u/41171174/nokia1280/UTM Nokia.ttf');
+	src: url('fonts/UTM Nokia.ttf');
 }
 @font-face {
 	font-family: ubuntu;
-	src: url('https://dl.dropboxusercontent.com/u/41171174/nokia1280/Ubuntu-R.ttf');
+	src: url('fonts/Ubuntu-R.ttf');
 }
