@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+
+	<!-- credit: the base css is based off of this codepen project and has been modified: http://codepen.io/thanhrossi/pen/PwYROX -->
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -11,10 +13,20 @@
 
 				<div class="manhinh">
 					<div class="mh-wrap">
-						<h2>Nokia</h2>
+						<h2>Phone</h2>
 						<div class="manchinh">
-							<h1 class="bounceInDown">13:06</h1>
-							<h6 class="flash">15.08.2012</h6>
+
+							<h6 id="txt" class="txt" style="display:none">
+								Text message here
+							</h6>
+
+							<h6 id="response" class="response">
+								Text message here
+							</h6>
+							<h6 id="reply-icon" class="response">
+								Reply
+							</h6>
+
 						</div>
 					</div> 
 				</div>
@@ -63,7 +75,12 @@
 
 
 		// adjust content arrangement
-		$("#container").css("margin-top", Math.round(($(window).height() - $("#container").height())/2.0));
+		function adjust () {
+			var h = Math.round(($(window).height() - $("#container").height())/2.0);
+			if (h > 0) {
+				$("#container").css("margin-top", h);
+			}
+		}
 		$(".button").click(function () {
 			var b = this;
 			b.style.background = "rgba(35,140,173, 0.5)";

@@ -81,10 +81,9 @@ body {
 	font-family: 'nokiabt';
 	font-size: 12px;
 	font-weight: normal;
-	top: 26px;
+	top: 0px;
 	left: 75px;
 	text-align: center;
-
 	color: #f2f2f2;
 }
 h6, h1 {
@@ -98,16 +97,22 @@ h1 {
 .manchinh {
 	position: absolute;
 	left: 27px;
-	top: 60px;
+	top: 40px;
 	width: 150px;
-	height: 135px;
-
+	height: 150px;
 	border: 2px solid #53565b;
 	background: #e4eff5;;
 }
 .manchinh h6{
 	font-size: 14px;
-	margin-top: -35px;s
+	margin-top: 15px;
+	padding: 3px;
+}
+.manchinh #reply-icon {
+	position: absolute;
+	right: 2px;
+	bottom: -32px;
+	color: rgba(0,0,0,0.5);
 }
 .keypad {
 	position: relative;
@@ -156,10 +161,9 @@ left: 71px;
 span {
 	top: 256px;
 	left: 77px;
-
-	width: 65px;
+	opacity: 0.5;
+	width: 61px;
 	height: 55px;
-
 	border: 1px solid #f2f2f2;
 	border-radius: 10px;
 	background: #151517;
