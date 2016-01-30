@@ -1,0 +1,236 @@
+body {
+	overflow: hidden;
+}
+#container {
+	width: 216px;
+	height: 502px;
+	margin: auto;
+
+	border: 1px solid #4c4d4f;
+	-moz-border-radius-topleft: 40px;
+	border-top-left-radius: 40px;
+	-moz-border-radius-topright: 40px;
+	border-top-right-radius: 40px;
+	-moz-border-radius-bottomright: 40px;
+	border-bottom-right-radius: 40px;
+	-moz-border-radius-bottomleft: 40px;
+	border-bottom-left-radius: 40px;
+	background: #393c41;
+
+
+	-webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+		 -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+					box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+}
+#nokia1280 {
+		position: relative;
+
+		width: 216px;
+		height: 496px;
+		margin-top: 1px;
+
+		border: 1px solid #4c4d4f;
+		-moz-border-radius-topleft: 48px;
+		border-top-left-radius: 48px;
+		-moz-border-radius-topright: 48px;
+		border-top-right-radius: 48px;
+		-moz-border-radius-bottomright: 40px;
+		border-bottom-right-radius: 40px;
+		-moz-border-radius-bottomleft: 40px;
+		border-bottom-left-radius: 40px;
+		background: #73787c;
+		background: -webkit-gradient(linear,left top,left bottom,from(#73787c),to(#b3b8bd));
+		background: -moz-linear-gradient(#b3b8bd, #73787c);
+
+		-webkit-border-radius-top-left: 48px;
+		-webkit-border-radius-top-right: 48px;
+		-webkit-border-radius-bottom-left: 60px;
+		-webkit-border-radius-bottom-right: 60px;
+}
+.manhinh {
+	position: absolute;
+	top: 10px;
+
+	width: 210px;
+	height: 220px;
+
+	border: 2px inset #fff;
+	-moz-border-radius-topleft: 40px;
+	border-top-left-radius: 40px;
+	-moz-border-radius-topright: 40px;
+	border-top-right-radius: 40px;
+	-moz-border-radius-bottomright: 20px;
+	border-bottom-right-radius: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-bottom-left-radius: 20px;
+	background: #292929;
+
+	-webkit-border-radius-top-left: 40px;
+	-webkit-border-radius-top-right: 40px;
+	-webkit-border-radius-bottom-left: 20px;
+	-webkit-border-radius-bottom-right: 20px;
+}
+.mh-wrap {
+	position: relative;
+}
+.mh-wrap h2 {
+	position: absolute;
+}
+
+.mh-wrap h2 {
+	font-family: 'nokiabt';
+	font-size: 12px;
+	font-weight: normal;
+	top: 26px;
+	left: 75px;
+	text-align: center;
+
+	color: #f2f2f2;
+}
+h6, h1 {
+	font-family: ubuntu;
+	text-align: center;
+}
+h1 {
+	font-size: 50px;
+	margin-top: 15px;
+}
+.manchinh {
+	position: absolute;
+	left: 27px;
+	top: 60px;
+	width: 150px;
+	height: 135px;
+
+	border: 2px solid #53565b;
+	background: #e4eff5;;
+}
+.manchinh h6{
+	font-size: 14px;
+	margin-top: -35px;s
+}
+.keypad {
+	position: relative;
+	padding-top: 250px;
+}
+.keypad a {
+	text-decoration: none;
+	color: #f2f2f2;
+}
+.keypad a:active, .keypad a:focus {
+	outline: none;
+}
+.button {
+	display: block;
+	padding: 2px;
+	border-radius: 5px;
+	background: #151517;
+	background: -webkit-gradient(linear,left top,left bottom,from(#151517),to(#61616c));
+	background: -moz-linear-gradient(#61616c, #151517);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3),inset 0 1px 0 #fff;
+		 -moz-box-shadow: 0 1px 1px rgba(0,0,0,.3),inset 0 1px 0 #fff;
+					box-shadow: 0 1px 1px rgba(0, 0, 0, .3),inset 0 1px 0 #fff;
+}
+.small {
+	padding-top: -10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+.small:nth-child(1), .small:nth-child(2), .big, span, .callall {
+	position: absolute;
+}
+.small:nth-child(1) {
+	left: 8px;
+}
+.small:nth-child(2) {
+	right: 8px;
+}
+.big {
+top: 249px;
+left: 71px;
+	width: 70px;
+	height: 70px;
+	border-radius: 12px;
+}
+span {
+	top: 256px;
+	left: 77px;
+
+	width: 65px;
+	height: 55px;
+
+	border: 1px solid #f2f2f2;
+	border-radius: 10px;
+	background: #151517;
+}
+.call {
+	position: relative;
+	top: 38px;
+	left: 8px;
+
+	width: 15px;
+	height: 20px;
+
+	text-indent: -99999px;
+}
+.end {
+	position: relative;
+	top: 7px;
+	left: 152px;
+	width: 15px;
+	height: 20px;
+	text-indent: -99999px;
+}
+.call-icon {
+	position: absolute;
+	top: 8px;
+	left: 4px;
+
+	clip: rect(0px,45px,8px,1px);
+
+	width: 40px;
+	height: 40px;
+
+	border: 2px solid #00a160;
+	border-radius: 10px;
+}
+.end-icon {
+	position: absolute;
+	top: 8px;
+	left: 4px;
+	clip: rect(0px,45px,8px,1px);
+	width: 40px;
+	height: 40px;
+	border: 2px solid #d24653;
+	border-radius: 10px;
+}
+.end-icon1 {
+	position: absolute;
+	top: 12px;
+	left: 18px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #d24653;
+}
+.average {
+	float: left;
+	line-height: 28px;
+	width: 50px;
+	height: 28px;
+	margin: 2px 5px 2px 10px;
+	text-align: center;
+}
+.button-top-buffer {
+	margin-top: 12px;
+}
+
+@font-face {
+	font-family: nokiabt;
+	src: url('https://dl.dropboxusercontent.com/u/41171174/nokia1280/UTM Nokia.ttf');
+}
+@font-face {
+	font-family: ubuntu;
+	src: url('https://dl.dropboxusercontent.com/u/41171174/nokia1280/Ubuntu-R.ttf');
+}

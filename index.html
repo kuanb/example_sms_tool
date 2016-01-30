@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<body>
+
+		<div id="container">
+			<div id="nokia1280">
+
+				<div class="manhinh">
+					<div class="mh-wrap">
+						<h2>Nokia</h2>
+						<div class="manchinh">
+							<h1 class="bounceInDown">13:06</h1>
+							<h6 class="flash">15.08.2012</h6>
+						</div>
+					</div> 
+				</div>
+
+				<div class="keypad">
+
+					<a href="#" class="small button right">__</a>
+					<a href="#" class="small button left">__</a>
+					<a href="#" class="big button"></a>
+
+					<span></span>
+					
+					<a href="#" class="small button call">
+						<div class="call-icon"></div>
+					</a>
+					
+					<a href="#" class="small button end">
+						<div class="end-icon"></div><div class="end-icon1"></div>
+					</a>
+
+					<div class="button-top-buffer"></div>
+
+					<div class="sk">
+						<a href="#" class="average button">1</a>
+						<a href="#" class="average button">2abc</a>
+						<a href="#" class="average button">def3</a>
+						<a href="#" class="average button">4ghi</a>
+						<a href="#" class="average button">5jkl</a>
+						<a href="#" class="average button">mno6</a>
+						<a href="#" class="average button">7pqrs</a>
+						<a href="#" class="average button">8tvu</a>
+						<a href="#" class="average button">wxyz9</a>
+						<a href="#" class="average button">*</a>
+						<a href="#" class="average button">0</a>
+						<a href="#" class="average button">#</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		// globals
+		var g = {};
+
+
+		// adjust content arrangement
+		$("#container").css("margin-top", Math.round(($(window).height() - $("#container").height())/2.0));
+		$(".button").click(function () {
+			var b = this;
+			b.style.background = "rgba(35,140,173, 0.5)";
+			setTimeout(function () {
+				b.style.background = "";
+			}, 175);
+		});
+
+
+
+	</script>
+</html>
