@@ -21,7 +21,6 @@
 								</h6>
 
 								<h6 class="response" id="cb-res-txt">
-									Welcome to CourtBot. Y to proceed. N to cancel.
 								</h6>
 								
 								<h6 id="del-icon" style="display:none">
@@ -81,7 +80,6 @@
 		<div class="page-right">
 			<center>
 				<p id="cb-res-txt_right">
-					Welcome to CourtBot. Y to proceed. N to cancel.
 				</p>
 			</center>
 		</div>
@@ -104,10 +102,13 @@
 		}
 
 		function newSMS (text) {
-			$(".txt").text(text)
+			$("#cb-res-txt").text(text);
+			$("#cb-res-txt_right").text(text);
 		};
 
+
 		adjust();
+		newSMS('Welcome to CourtSMS. Txt "Y" to continue. Txt "N" to stop receiving txts.');
 		$(".button").mousedown(function () { this.style.background = "rgba(35,140,173, 0.5)"; });
 		$(".button").mouseup(function () { this.style.background = ""; });
 
