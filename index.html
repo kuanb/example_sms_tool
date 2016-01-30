@@ -17,20 +17,24 @@
 							<h2>Phone</h2>
 							<div class="manchinh">
 
-								<h6 class="txt" style="display:none">
-									<input type="text">
+								<h6 id="inp-txt" style="display:none">
 								</h6>
 
-								<h6 class="response">
+								<h6 class="response" id="cb-res-txt">
 									Welcome to CourtBot. Y to proceed. N to cancel.
 								</h6>
 								
-								<h6 id="back-icon">
-									Back
+								<h6 id="del-icon" style="display:none">
+									Delete
 								</h6>
+								<h6 id="send-icon" class="response" style="display:none">
+									Send
+								</h6>
+
 								<h6 id="reply-icon" class="response">
 									Reply
 								</h6>
+
 
 							</div>
 						</div> 
@@ -38,8 +42,8 @@
 
 					<div class="keypad">
 
-						<a href="#" class="small button right">__</a>
-						<a href="#" class="small button left">__</a>
+						<a href="#" class="small button right" id="back_btn">__</a>
+						<a href="#" class="small button left" id="rep_sub_btn">__</a>
 						<a href="#" class="big button"></a>
 
 						<span></span>
@@ -76,7 +80,9 @@
 
 		<div class="page-right">
 			<center>
-				<p class="txt">This is where text would go.</p>
+				<p id="cb-res-txt_right">
+					Welcome to CourtBot. Y to proceed. N to cancel.
+				</p>
 			</center>
 		</div>
 
@@ -84,6 +90,8 @@
 	<script type="text/javascript">
 		// globals
 		var g = {};
+		g.responding = false;
+		g.curr_res = "";
 
 
 		// adjust content arrangement
@@ -104,11 +112,43 @@
 		$(".button").mouseup(function () { this.style.background = ""; });
 
 		$("body").keypress(function (e) {
-			var c = String.fromCharCode(e.which);
-			var t = $(".txt")[0].innerText;
-			var tc = String(t) + String(c);
-			console.log(tc);
-			$(".txt").text(tc);
+			console.log(e)
+			if (g.responding) {
+				// try to handle deletes
+				if (e.charCode == 13) {
+					g.curr_res = g.curr_res.slice(0, -1);
+				} else {
+					g.curr_res += String.fromCharCode(e.which);
+				}
+				$("#inp-txt")[0].innerText = g.curr_res;
+			}
+		});
+
+		$("#rep_sub_btn").click(function () {
+			if (g.responding) {
+				$("#reply-icon").show();
+				$("#cb-res-txt").show();
+
+				$("#inp-txt").hide();
+				$("#del-icon").hide();
+				$("#send-icon").hide();
+			} else {
+				$("#reply-icon").hide();
+				$("#cb-res-txt").hide();
+
+				$("#inp-txt").show();
+				$("#del-icon").show();
+				$("#send-icon").show();
+			}
+			g.responding = !g.responding;
+			g.curr_res = "";
+		});
+
+		$("#back_btn").click(function () {
+			console.log(g.curr_res)
+			g.curr_res = g.curr_res.slice(0, -1);
+			$("#inp-txt")[0].innerText = g.curr_res;
+			console.log(g.curr_res)
 		});
 
 	</script>

@@ -129,13 +129,13 @@ h1 {
 	margin-top: 3px;
 	padding: 10px;
 }
-.manchinh #reply-icon {
+.manchinh #reply-icon, .manchinh #send-icon {
 	position: absolute;
 	right: 2px;
 	bottom: -32px;
 	color: rgba(0,0,0,0.5);
 }
-.manchinh #back-icon {
+.manchinh #del-icon {
 	position: absolute;
 	left: 2px;
 	bottom: -32px;
