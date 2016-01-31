@@ -4,9 +4,14 @@
 	<!-- credit: the base css is based off of this codepen project and has been modified: http://codepen.io/thanhrossi/pen/PwYROX -->
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<body>
+
+		<div id="loadbar" class="load-splash">
+			<center><p class="loading"><i class="fa fa-spinner fa-pulse"></i> Loading</p></center>
+		</div>
 
 		<div class="page-left">
 			<div id="container">
@@ -84,6 +89,11 @@
 				<p id="cb-res-txt-right">
 				</p>
 			</center>
+			<div class="instructions" style="display:none;">
+				<i class="fa fa-times-circle-o" id="inst-close" style="float:right;padding-top:7px;padding-right:10px;cursor:pointer"></i>
+				<p><b>Instructions</b></p>
+				<p>Click the "Reply" button in top right to begin typing a response. Type anywhere on screen to enter text.</p>
+			</div>
 		</div>
 
 	</body>
@@ -104,7 +114,11 @@
 				$("#container").css("margin-top", h);
 			}
 			$(".page-right").height($(window).height());
-		}
+			$("#loadbar").height($(window).height());
+
+			$(".instructions").slideDown();
+			loadDone();
+		};
 
 		function newSMS (text) {
 			$("#cb-res-txt").text(text);
@@ -140,6 +154,13 @@
 					console.log("there was an error", e);
 				}
 			});
+		};
+
+		function loadStart () { 
+			$("#loadbar").show();
+		};
+		function loadDone () { 
+			$("#loadbar").hide();
 		};
 
 
@@ -196,6 +217,10 @@
 		$("#back_btn").click(function () {
 			g.curr_res = g.curr_res.slice(0, -1);
 			$("#inp-txt")[0].innerText = g.curr_res;
+		});
+
+		$("#inst-close").click(function () {
+			$(".instructions").slideUp();
 		});
 
 		// keeps delete button from exiting or navigating back from page
