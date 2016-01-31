@@ -56,19 +56,21 @@
 						</a>
 
 						<div class="button-top-buffer"></div>
-
-						<a href="#" class="average button">1</a>
-						<a href="#" class="average button">2abc</a>
-						<a href="#" class="average button">def3</a>
-						<a href="#" class="average button">4ghi</a>
-						<a href="#" class="average button">5jkl</a>
-						<a href="#" class="average button">mno6</a>
-						<a href="#" class="average button">7pqrs</a>
-						<a href="#" class="average button">8tvu</a>
-						<a href="#" class="average button">wxyz9</a>
-						<a href="#" class="average button btm-lft-btn">*</a>
-						<a href="#" class="average button">0</a>
-						<a href="#" class="average button btm-rht-btn">#</a>
+						
+						<div id="key-array">
+							<a href="#" id="1" class="average button">1</a>
+							<a href="#" id="2abc" class="average button">2abc</a>
+							<a href="#" id="def3" class="average button">def3</a>
+							<a href="#" id="4ghi" class="average button">4ghi</a>
+							<a href="#" id="5jkl" class="average button">5jkl</a>
+							<a href="#" id="mno6" class="average button">mno6</a>
+							<a href="#" id="7pqrs" class="average button">7pqrs</a>
+							<a href="#" id="8tvu" class="average button">8tvu</a>
+							<a href="#" id="wxyz9" class="average button">wxyz9</a>
+							<a href="#" id="*" class="average button btm-lft-btn">*</a>
+							<a href="#" id="0" class="average button">0</a>
+							<a href="#" id="#" class="average button btm-rht-btn">#</a>
+						</div>
 
 						<div class="mic"></div>
 
@@ -79,13 +81,16 @@
 
 		<div class="page-right">
 			<center>
-				<p id="cb-res-txt_right">
+				<p id="cb-res-txt-right">
 				</p>
 			</center>
 		</div>
 
 	</body>
 	<script type="text/javascript">
+		// prototype modifications
+		NodeList.prototype.forEach = Array.prototype.forEach;
+
 		// globals
 		var g = {};
 		g.responding = false;
@@ -103,7 +108,38 @@
 
 		function newSMS (text) {
 			$("#cb-res-txt").text(text);
-			$("#cb-res-txt_right").text(text);
+			$("#cb-res-txt-right").text(text);
+		};
+
+		function clickButton (btn, ct) {
+			if (ct > 0) {
+				btn.style.background = "rgba(35,140,173, 0.5)"; 
+				setTimeout(function () {
+					btn.style.background = ""; 
+					ct = ct - 1;
+					setTimeout(function () {
+						clickButton(btn, ct);
+					}, 75);
+				}, 75);
+			}
+		};
+
+		function animateKeypress (c) {
+			$("#key-array")[0].childNodes.forEach(function (ea)  {
+				try {
+					if (ea.text !== undefined) {
+						var t = ea.text;
+						if (t.indexOf(c) > -1) {
+							var clickCount = t.indexOf(c) + 1;
+							clickButton(ea, clickCount);
+						}
+					}
+				}
+				catch (e) {
+					// do nothing
+					console.log("there was an error", e);
+				}
+			});
 		};
 
 
@@ -112,17 +148,23 @@
 		newSMS('Welcome to CourtSMS. Txt "Y" to continue. Txt "N" to stop receiving txts.');
 
 
-		$(".button").mousedown(function () { this.style.background = "rgba(35,140,173, 0.5)"; });
-		$(".button").mouseup(function () { this.style.background = ""; });
+		// bindings
+		$(".button").mousedown(function () {
+			this.style.background = "rgba(35,140,173, 0.5)"; 
+		});
+		$(".button").mouseup(
+			function () { this.style.background = "";
+		});
 
 		$("body").keypress(function (e) {
-			console.log(e)
 			if (g.responding) {
+				var c = String.fromCharCode(e.which);
+				animateKeypress(c);
 				// try to handle deletes
 				if (e.charCode == 13) {
 					g.curr_res = g.curr_res.slice(0, -1);
 				} else {
-					g.curr_res += String.fromCharCode(e.which);
+					g.curr_res += c;
 				}
 				$("#inp-txt")[0].innerText = g.curr_res;
 			}
@@ -149,10 +191,8 @@
 		});
 
 		$("#back_btn").click(function () {
-			console.log(g.curr_res)
 			g.curr_res = g.curr_res.slice(0, -1);
 			$("#inp-txt")[0].innerText = g.curr_res;
-			console.log(g.curr_res)
 		});
 
 	</script>

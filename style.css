@@ -16,11 +16,8 @@ body {
 	box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.35);
 	word-wrap: break-word;
 }
-.page-right input {
-	margin: 10px;
-	width: 95%;
-	background-color: rgba(0,0,0,0.0);
-	border: 1px;
+.page-right p {
+	margin: 1.25em;
 }
 #container {
 	width: 216px;
