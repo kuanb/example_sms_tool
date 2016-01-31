@@ -57,20 +57,20 @@
 
 						<div class="button-top-buffer"></div>
 
-						<div class="sk">
-							<a href="#" class="average button">1</a>
-							<a href="#" class="average button">2abc</a>
-							<a href="#" class="average button">def3</a>
-							<a href="#" class="average button">4ghi</a>
-							<a href="#" class="average button">5jkl</a>
-							<a href="#" class="average button">mno6</a>
-							<a href="#" class="average button">7pqrs</a>
-							<a href="#" class="average button">8tvu</a>
-							<a href="#" class="average button">wxyz9</a>
-							<a href="#" class="average button">*</a>
-							<a href="#" class="average button">0</a>
-							<a href="#" class="average button">#</a>
-						</div>
+						<a href="#" class="average button">1</a>
+						<a href="#" class="average button">2abc</a>
+						<a href="#" class="average button">def3</a>
+						<a href="#" class="average button">4ghi</a>
+						<a href="#" class="average button">5jkl</a>
+						<a href="#" class="average button">mno6</a>
+						<a href="#" class="average button">7pqrs</a>
+						<a href="#" class="average button">8tvu</a>
+						<a href="#" class="average button">wxyz9</a>
+						<a href="#" class="average button btm-lft-btn">*</a>
+						<a href="#" class="average button">0</a>
+						<a href="#" class="average button btm-rht-btn">#</a>
+
+						<div class="mic"></div>
 
 					</div>
 				</div>
@@ -92,7 +92,7 @@
 		g.curr_res = "";
 
 
-		// adjust content arrangement
+		// utilities
 		function adjust () {
 			var h = Math.round(($(window).height() - $("#container").height())/2.0);
 			if (h > 0) {
@@ -107,8 +107,11 @@
 		};
 
 
+		// initial set up actions
 		adjust();
 		newSMS('Welcome to CourtSMS. Txt "Y" to continue. Txt "N" to stop receiving txts.');
+
+
 		$(".button").mousedown(function () { this.style.background = "rgba(35,140,173, 0.5)"; });
 		$(".button").mouseup(function () { this.style.background = ""; });
 
