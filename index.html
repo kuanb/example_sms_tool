@@ -119,7 +119,7 @@
 					ct = ct - 1;
 					setTimeout(function () {
 						clickButton(btn, ct);
-					}, 75);
+					}, 25);
 				}, 75);
 			}
 		};
@@ -157,7 +157,9 @@
 		});
 
 		$("body").keypress(function (e) {
-			if (g.responding) {
+			if (e.charCode == 8 || e.charCode == 46) {
+				confirm("WWW")
+			} else if (g.responding) {
 				var c = String.fromCharCode(e.which);
 				animateKeypress(c);
 				// try to handle deletes
@@ -188,11 +190,41 @@
 			}
 			g.responding = !g.responding;
 			g.curr_res = "";
+			$("#inp-txt")[0].innerText = g.curr_res;
 		});
 
 		$("#back_btn").click(function () {
 			g.curr_res = g.curr_res.slice(0, -1);
 			$("#inp-txt")[0].innerText = g.curr_res;
+		});
+
+		// keeps delete button from exiting or navigating back from page
+		$(document).unbind('keydown').bind('keydown', function (event) {
+			var doPrevent = false;
+
+			if (event.keyCode === 8) {
+				var d = event.srcElement || event.target;
+
+				if ((d.tagName.toUpperCase() === 'INPUT' && 
+						(
+							d.type.toUpperCase() === 'TEXT' ||
+							d.type.toUpperCase() === 'PASSWORD' || 
+							d.type.toUpperCase() === 'FILE' || 
+							d.type.toUpperCase() === 'SEARCH' || 
+							d.type.toUpperCase() === 'EMAIL' || 
+							d.type.toUpperCase() === 'NUMBER' || 
+							d.type.toUpperCase() === 'DATE' )
+						) || 
+						d.tagName.toUpperCase() === 'TEXTAREA') {
+							doPrevent = d.readOnly || d.disabled;
+				} else {
+					doPrevent = true;
+				}
+			}
+
+			if (doPrevent) {
+				event.preventDefault();
+			}
 		});
 
 	</script>
