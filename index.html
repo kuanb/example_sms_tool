@@ -89,11 +89,21 @@
 				<p id="cb-res-txt-right">
 				</p>
 			</center>
-			<div class="instructions" style="display:none;">
-				<i class="fa fa-times-circle-o" id="inst-close" style="float:right;padding-top:7px;padding-right:10px;cursor:pointer"></i>
-				<p><b>Instructions</b></p>
-				<p>Click the "Reply" button in top right to begin typing a response. Type anywhere on screen to enter text.</p>
+			
+			<div class="page-right-btm">
+				<div class="response-entry">
+					<input id="input-box" type="text">
+					<div id="send-box">SEND</div>
+				</div>
+				
+				<div class="instructions" style="display:none;">
+					<i class="fa fa-times-circle-o" id="inst-close" style="float:right;padding-top:7px;padding-right:10px;cursor:pointer"></i>
+					<p><b>Instructions</b></p>
+					<p>Click the "Reply" button in top right to begin typing a response.<p>
+					<p>Type in the response box or anywhere else on screen to enter text.</p>
+				</div>
 			</div>
+
 		</div>
 
 	</body>
@@ -115,6 +125,8 @@
 			}
 			$(".page-right").height($(window).height());
 			$("#loadbar").height($(window).height());
+
+			$("#input-box").width(String(Number($("#input-box").width()) - 145) + "px");
 
 			$(".instructions").slideDown();
 			loadDone();

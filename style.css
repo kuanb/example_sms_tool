@@ -19,13 +19,44 @@ body {
 .page-right p {
 	margin: 1.25em;
 }
-.page-right .instructions {
-	min-height: 20px;
+.page-right-btm {
+	width: 50%;
+	bottom: 0px;
+	position: absolute;
 	background: rgb(67,181,217);
 	font-size: 0.35em;
-	position: absolute;
-	bottom: 0px;
+	min-height: 20px;
+}
+.page-right-btm .instructions, .page-right-btm .response-entry {
 	word-wrap: break-word;
+}
+.page-right-btm .response-entry input {
+	font-family: ubuntu;
+	color: #FFF;
+	width: 100%;
+	height: 40px;
+	border: 0px;
+	background: rgba(255,255,255,0.25);
+	min-height:75px;
+	padding:10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	font-size: 1em;
+	float: left;
+}
+.page-right-btm .response-entry #send-box {
+	width: 95px;
+	height: 95px;
+	background-color: rgba(35,140,173, 0.7);
+	float: left;
+	color: #FFF;
+	cursor: pointer;
+	overflow: hidden;
+	text-align: center;
+	line-height: 95px;
+}
+.page-right-btm .response-entry #send-box:hover {
+	background-color: rgba(35,140,173, 0.47);
 }
 #container {
 	width: 216px;
@@ -42,7 +73,6 @@ body {
 	-moz-border-radius-bottomleft: 67px;
 	border-bottom-left-radius: 67px;
 	background: #042c54;
-
 
 	-webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
 		 -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
