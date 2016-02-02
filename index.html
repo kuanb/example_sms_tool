@@ -93,7 +93,9 @@
 			<div class="page-right-btm" style="display:none;">
 				<div class="response-entry">
 					<input id="input-box" type="text">
-					<div id="send-box" onclick="sendText()">SEND</div>
+					<div id="send-box" onclick="inputSendClick()">
+						<i class="fa fa-paper-plane"></i>
+					</div>
 				</div>
 
 				<div class="instructions">
@@ -129,8 +131,8 @@
 			$(".page-right").height($(window).height());
 			$("#loadbar").height($(window).height());
 
-			$(".page-right-btm").slideDown();
-			$("#input-box").width(String(Number($("#input-box").width()) - 145) + "px");
+			$(".page-right-btm").slideDown("slow");
+			$("#input-box").width(String(Number($(".response-entry").width()) - 145) + "px");
 
 			loadDone();
 		};
@@ -143,7 +145,6 @@
 		function sendText () {
 			$("#input-box").val("");
 			g.curr_res = "";
-			resetRes();
 		};
 
 		function clickButton (btn, ct) {
@@ -157,6 +158,16 @@
 					}, 25);
 				}, 75);
 			}
+		};
+
+		function inputSendClick () {
+			if (g.responding) {
+				showTextView();
+				sendText();
+			} else {
+				showResView();
+			}
+			resetRes();
 		};
 
 		function animateKeypress (c) {
@@ -193,12 +204,12 @@
 		};
 
 		function showTextView() {
-			$("#reply-icon").hide();
-			$("#cb-res-txt").hide();
+			$("#reply-icon").show();
+			$("#cb-res-txt").show();
 
-			$("#inp-txt").show();
-			$("#del-icon").show();
-			$("#send-icon").show();
+			$("#inp-txt").hide();
+			$("#del-icon").hide();
+			$("#send-icon").hide();
 		};
 
 		function loadStart () { 
@@ -216,6 +227,10 @@
 
 
 		// bindings
+		$(window).resize(function() {
+			adjust();
+		});
+
 		$(".button").mousedown(function () {
 			this.style.background = "rgba(35,140,173, 0.5)"; 
 		});
@@ -235,18 +250,12 @@
 		});
 
 		$(".response-entry").on("click", function() {
-			showTextView();
+			showResView();
 			resetRes();
 		});
 
 		$("#rep_sub_btn").click(function () {
-			if (g.responding) {
-				showTextView();
-				sendText();
-			} else {
-				showResView();
-			}
-			resetRes();
+			inputSendClick();
 		});
 
 		$("#back_btn").click(function () {
