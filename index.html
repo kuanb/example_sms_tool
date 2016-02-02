@@ -150,12 +150,13 @@
 		// globals
 		var g = {};
 		g.responding = false;
-		g.curr_res = "";
 		g.struc = null;
+		g.curr_id = "0";
+		g.curr_res = "";
 
 
 		// utilities
-		function adjust () {
+		function adjust (cb) {
 			var h = Math.round(($(window).height() - $("#container").height())/2.0);
 			if (h > 0) {
 				$("#container").css("margin-top", h);
@@ -167,19 +168,9 @@
 			$(".page-right-btm").slideDown("slow");
 			$("#input-box").width(String(Number($(".response-entry").width()) - 145) + "px");
 
-			loadJSON(function (j) {
-				var failText = "There was an error loading the JSON survey structure for this page.";
-				try {
-					g.struc = JSON.parse(j);
-					if (g.struc !== null) {
-						loadDone();
-					} else {
-						alert(failText);
-					}
-				} catch (e) {
-					alert(failText);
-				}
-			});
+			$("#cb-res-txt-right").height(String($(window).height() - 100) + "px");
+
+			if (cb) { cb(); }
 		};
 
 		function loadJSON(callback) {   
@@ -203,7 +194,16 @@
 		};
 
 		function sendText () {
-			var inp = $("#input-box").val();
+			var inp = $("#input-box").val().toUpperCase();
+			var new_id = g.struc[g.curr_id].options[inp];
+
+			if (new_id) {
+				g.curr_id = new_id;
+			} else {
+				g.curr_id = "*";
+			}
+			newSMS(String(g.struc[g.curr_id].text));
+
 			$("#input-box").val("");
 			g.curr_res = "";
 		};
@@ -222,6 +222,7 @@
 		};
 
 		function inputSendClick () {
+			console.log(g.responding);
 			if (g.responding) {
 				showTextView();
 				sendText();
@@ -252,6 +253,7 @@
 
 		function resetRes () {
 			g.responding = !g.responding;
+
 			g.curr_res = "";
 			$("#inp-txt")[0].innerText = g.curr_res;
 		};
@@ -284,8 +286,22 @@
 
 
 		// initial set up actions
-		adjust();
-		newSMS('Welcome to CourtSMS. Txt "Y" to continue. Txt "N" to stop receiving txts.');
+		adjust(function () {
+			loadJSON(function (j) {
+				var failText = "There was an error loading the JSON survey structure for this page.";
+				try {
+					g.struc = JSON.parse(j);
+					if (g.struc !== null) {
+						newSMS(g.struc["0"].text);
+						loadDone();
+					} else {
+						alert(failText);
+					}
+				} catch (e) {
+					alert(failText);
+				}
+			});
+		});
 
 
 		// bindings
@@ -310,9 +326,10 @@
 			}
 		});
 
-		$(".response-entry").on("click", function() {
+		$(".response-entry #input-box").on("click", function() {
 			showResView();
-			resetRes();
+			g.responding = true;
+			$("#inp-txt")[0].innerText = g.curr_res;
 		});
 
 		$("#rep_sub_btn").click(function () {

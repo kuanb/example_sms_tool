@@ -1,3 +1,98 @@
 {
-	"foo": 123
+	"0": {
+		"text": "You enrolled in CourtSMS. To opt out text OPTOUT. To change your reminders frequency text CHANGE. Other questions? Text HELP",
+		"options": {
+			"CHANGE": "1",
+			"OPTOUT": "2",
+			"HELP": "3"
+		}
+	},
+
+	"1": {
+		"text" : "Text ONE to receive messages daily. Text TWO to receive messages every two days. Text WEEK to recieve messages once a week.",
+		"options": {
+			"ONE": "4",
+			"TWO": "5",
+			"WEEK": "6"
+		}
+	},
+
+	"2": {
+		"text" : "If you opt out of you will be required to call 1-800-888-8888 daily to comply with your super-vision. Text OK to opt out or STAY to stay.",
+		"options": {
+			"OK": "7",
+			"STAY": "8"
+		}
+	},
+
+	"4": {
+		"text" : "Thank you! You will now receive messages daily. Text CHANGE to change or HELP for other help.",
+		"options": {
+			"CHANGE": "1",
+			"HELP": "3"
+		}
+	},
+
+	"5": {
+		"text" : "Thank you! You will now receive messages every two days. Text CHANGE to change or HELP for other help.",
+		"options": {
+			"CHANGE": "1",
+			"HELP": "3"
+		}
+	},
+
+	"6": {
+		"text" : "Thank you! You will now receive messages weekly. Text CHANGE to change or HELP for other help.",
+		"options": {
+			"CHANGE": "1",
+			"HELP": "3"
+		}
+	},
+
+	"7": {
+		"text" : "To comply with your supervision call 1-800-888-8888 daily to check in and receive updates to your court date.",
+		"options": {
+		}
+	},
+
+	"8": {
+		"text" : "Thanks for staying with us! If you have questions text HELP or call 1-800-888-8888.",
+		"options": {
+			"HELP": "3"
+		}
+	},
+
+	"3": {
+		"text" : "Questions? Text DATE for your date. Text BRING for what to bring. All other questions call 1-800-888-8888",
+		"options": {
+			"DATE": "9",
+			"BRING": "10"
+		}
+	},
+
+	"9": {
+		"text" : "Your court time is on Tuesday, February 14th, 2016. Please arrive at 9:20am at 2001 State Street Room S4200. You will need to bring x, y, z with you.",
+		"options": {
+			"HELP": "3"
+		}
+	},
+
+	"10": {
+		"text" : "You will need to bring x, y, z with you.",
+		"options": {
+			"HELP": "3"
+		}
+	},
+
+	"*": {
+		"text" : "I'm not sure what you were asking. Type MENU to return to the main menu.",
+		"options": {
+			"MENU": "0"
+		}
+	}
+
 }
+
+
+
+ 
