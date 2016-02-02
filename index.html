@@ -90,17 +90,20 @@
 				</p>
 			</center>
 			
-			<div class="page-right-btm">
+			<div class="page-right-btm" style="display:none;">
 				<div class="response-entry">
 					<input id="input-box" type="text">
-					<div id="send-box">SEND</div>
+					<div id="send-box" onclick="sendText()">SEND</div>
 				</div>
-				
-				<div class="instructions" style="display:none;">
+
+				<div class="instructions">
 					<i class="fa fa-times-circle-o" id="inst-close" style="float:right;padding-top:7px;padding-right:10px;cursor:pointer"></i>
-					<p><b>Instructions</b></p>
-					<p>Click the "Reply" button in top right to begin typing a response.<p>
-					<p>Type in the response box or anywhere else on screen to enter text.</p>
+					<p style="padding-top:99px;"><b>Instructions</b></p>
+					<p>
+						Click the "Reply" button in top right to begin typing a response.
+						<br>
+						Type in the response box to enter text.
+					</p>
 				</div>
 			</div>
 
@@ -126,15 +129,21 @@
 			$(".page-right").height($(window).height());
 			$("#loadbar").height($(window).height());
 
+			$(".page-right-btm").slideDown();
 			$("#input-box").width(String(Number($("#input-box").width()) - 145) + "px");
 
-			$(".instructions").slideDown();
 			loadDone();
 		};
 
 		function newSMS (text) {
 			$("#cb-res-txt").text(text);
 			$("#cb-res-txt-right").text(text);
+		};
+
+		function sendText () {
+			$("#input-box").val("");
+			g.curr_res = "";
+			resetRes();
 		};
 
 		function clickButton (btn, ct) {
@@ -168,9 +177,34 @@
 			});
 		};
 
+		function resetRes () {
+			g.responding = !g.responding;
+			g.curr_res = "";
+			$("#inp-txt")[0].innerText = g.curr_res;
+		};
+
+		function showResView () {
+			$("#reply-icon").hide();
+			$("#cb-res-txt").hide();
+
+			$("#inp-txt").show();
+			$("#del-icon").show();
+			$("#send-icon").show();
+		};
+
+		function showTextView() {
+			$("#reply-icon").hide();
+			$("#cb-res-txt").hide();
+
+			$("#inp-txt").show();
+			$("#del-icon").show();
+			$("#send-icon").show();
+		};
+
 		function loadStart () { 
 			$("#loadbar").show();
 		};
+
 		function loadDone () { 
 			$("#loadbar").hide();
 		};
@@ -189,41 +223,30 @@
 			function () { this.style.background = "";
 		});
 
-		$("body").keypress(function (e) {
-			if (e.charCode == 8 || e.charCode == 46) {
-				confirm("WWW")
-			} else if (g.responding) {
+		$("#input-box").keyup(function (e) {
+			if (g.responding) {
 				var c = String.fromCharCode(e.which);
 				animateKeypress(c);
+				console.log("dd")
 				// try to handle deletes
-				if (e.charCode == 13) {
-					g.curr_res = g.curr_res.slice(0, -1);
-				} else {
-					g.curr_res += c;
-				}
+				g.curr_res = $("#input-box").val();
 				$("#inp-txt")[0].innerText = g.curr_res;
 			}
 		});
 
+		$(".response-entry").on("click", function() {
+			showTextView();
+			resetRes();
+		});
+
 		$("#rep_sub_btn").click(function () {
 			if (g.responding) {
-				$("#reply-icon").show();
-				$("#cb-res-txt").show();
-
-				$("#inp-txt").hide();
-				$("#del-icon").hide();
-				$("#send-icon").hide();
+				showTextView();
+				sendText();
 			} else {
-				$("#reply-icon").hide();
-				$("#cb-res-txt").hide();
-
-				$("#inp-txt").show();
-				$("#del-icon").show();
-				$("#send-icon").show();
+				showResView();
 			}
-			g.responding = !g.responding;
-			g.curr_res = "";
-			$("#inp-txt")[0].innerText = g.curr_res;
+			resetRes();
 		});
 
 		$("#back_btn").click(function () {
@@ -232,8 +255,9 @@
 		});
 
 		$("#inst-close").click(function () {
-			$(".instructions").slideUp();
+			$(".instructions").hide();
 		});
+
 
 		// keeps delete button from exiting or navigating back from page
 		$(document).unbind('keydown').bind('keydown', function (event) {
