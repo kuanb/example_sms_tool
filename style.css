@@ -6,6 +6,13 @@ body {
 .page-left {
 	width: 50%;
 	float: left;
+	background:
+		radial-gradient(rgba(0,0,0,0.25) 8%, transparent 16%) 0px 0px,
+		radial-gradient(rgba(0,0,0,0.05) 30%, transparent 16%) 0px 0px,
+		radial-gradient(rgba(255,255,255,.01) 25%, transparent 15%) 0 1px,
+		radial-gradient(rgba(255,255,255,.01) 25%, transparent 15%) 8px 9px;
+	background-color: rgba(0,0,0,0,0.5);
+	background-size: 16px 16px;
 }
 .page-right {
 	width: 50%;
@@ -44,6 +51,9 @@ body {
 	font-size: 1em;
 	float: left;
 }
+input:focus {
+	outline: none;
+}
 .page-right-btm .response-entry #send-box {
 	width: 95px;
 	height: 95px;
@@ -81,6 +91,12 @@ body {
 	-webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
 		 -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
 					box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+
+	/* rotate! */
+	-ms-transform: rotate(-5deg); /* IE 9 */
+	-webkit-transform: rotate(-5deg); /* Safari */
+	-moz-transform: rotate(-5deg);
+	transform: rotate(-5deg);
 }
 #nokia1280 {
 		position: relative;

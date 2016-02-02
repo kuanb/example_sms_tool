@@ -116,10 +116,42 @@
 		// prototype modifications
 		NodeList.prototype.forEach = Array.prototype.forEach;
 
+		(function ($) {
+			$.fn.shake = function (options) {
+					// defaults
+					var settings = {
+							'shakes': 2,
+							'distance': 5,
+							'duration': 350
+					};
+					// merge options
+					if (options) {
+							$.extend(settings, options);
+					}
+					// make it so
+					var pos;
+					return this.each(function () {
+							$this = $(this);
+							// position if necessary
+							pos = $this.css('position');
+							if (!pos || pos === 'static') {
+									$this.css('position', 'relative');
+							}
+							// shake it
+							for (var x = 1; x <= settings.shakes; x++) {
+								$this.animate({ left: settings.distance * -1 }, (settings.duration / settings.shakes) / 4)
+									.animate({ left: settings.distance }, (settings.duration / settings.shakes) / 2)
+									.animate({ left: 0 }, (settings.duration / settings.shakes) / 4);
+							}
+					});
+			};
+		}($));
+
 		// globals
 		var g = {};
 		g.responding = false;
 		g.curr_res = "";
+		g.struc = null;
 
 
 		// utilities
@@ -128,21 +160,50 @@
 			if (h > 0) {
 				$("#container").css("margin-top", h);
 			}
+			$(".page-left").height($(window).height());
 			$(".page-right").height($(window).height());
 			$("#loadbar").height($(window).height());
 
 			$(".page-right-btm").slideDown("slow");
 			$("#input-box").width(String(Number($(".response-entry").width()) - 145) + "px");
 
-			loadDone();
+			loadJSON(function (j) {
+				var failText = "There was an error loading the JSON survey structure for this page.";
+				try {
+					g.struc = JSON.parse(j);
+					if (g.struc !== null) {
+						loadDone();
+					} else {
+						alert(failText);
+					}
+				} catch (e) {
+					alert(failText);
+				}
+			});
+		};
+
+		function loadJSON(callback) {   
+
+			var xobj = new XMLHttpRequest();
+					xobj.overrideMimeType("application/json");
+			xobj.open('GET', 'structure.json', true); // Replace 'my_data' with the path to your file
+			xobj.onreadystatechange = function () {
+				if (xobj.readyState == 4 && xobj.status == "200") {
+					// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+					callback(xobj.responseText);
+				}
+			};
+			xobj.send(null);  
 		};
 
 		function newSMS (text) {
 			$("#cb-res-txt").text(text);
 			$("#cb-res-txt-right").text(text);
+			$("#container").shake();
 		};
 
 		function sendText () {
+			var inp = $("#input-box").val();
 			$("#input-box").val("");
 			g.curr_res = "";
 		};
@@ -155,7 +216,7 @@
 					ct = ct - 1;
 					setTimeout(function () {
 						clickButton(btn, ct);
-					}, 25);
+					}, 5);
 				}, 75);
 			}
 		};
@@ -171,6 +232,7 @@
 		};
 
 		function animateKeypress (c) {
+			c = c.toLowerCase();
 			$("#key-array")[0].childNodes.forEach(function (ea)  {
 				try {
 					if (ea.text !== undefined) {
@@ -242,7 +304,6 @@
 			if (g.responding) {
 				var c = String.fromCharCode(e.which);
 				animateKeypress(c);
-				console.log("dd")
 				// try to handle deletes
 				g.curr_res = $("#input-box").val();
 				$("#inp-txt")[0].innerText = g.curr_res;
