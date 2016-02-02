@@ -9,7 +9,7 @@
 	},
 
 	"1": {
-		"text" : "Text ONE to receive messages daily. Text TWO to receive messages every two days. Text WEEK to recieve messages once a week.",
+		"text" : "Text ONE to receive a message daily. Text TWO to receive messages every two days. Text WEEK to recieve messages once a week.",
 		"options": {
 			"ONE": "4",
 			"TWO": "5",
@@ -92,7 +92,3 @@
 	}
 
 }
-
-
-
- 
