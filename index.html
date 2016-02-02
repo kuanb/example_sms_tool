@@ -165,10 +165,10 @@
 			$(".page-right").height($(window).height());
 			$("#loadbar").height($(window).height());
 
-			$(".page-right-btm").slideDown("slow");
-			$("#input-box").width(String(Number($(".response-entry").width()) - 145) + "px");
-
-			$("#cb-res-txt-right").height(String($(window).height() - 100) + "px");
+			$(".page-right-btm").slideDown("slow", function () {
+				$("#input-box").width(String(Number($(".response-entry").width()) - 145) + "px");
+				$("#cb-res-txt-right").height(String($(window).height() - $(".page-right-btm").height()) + "px");
+			});
 
 			if (cb) { cb(); }
 		};

@@ -184,6 +184,7 @@ h1 {
 	font-size: 14px;
 	margin-top: 3px;
 	padding: 10px;
+	overflow: scroll;;
 }
 .manchinh #reply-icon, .manchinh #send-icon {
 	position: absolute;
@@ -200,6 +201,7 @@ h1 {
 .keypad {
 	position: relative;
 	padding-top: 250px;
+	pointer-events: none;
 }
 .keypad a {
 	text-decoration: none;
@@ -289,9 +291,6 @@ span {
 
 	border: 2px solid #00a160;
 	border-radius: 10px;
-}
-.manchinh h6 {
-	overflow: scroll;
 }
 #cb-res-txt {
 	max-height: 97px;
