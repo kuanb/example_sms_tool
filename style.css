@@ -210,6 +210,9 @@ h1 {
 .keypad a:active, .keypad a:focus {
 	outline: none;
 }
+.keypad a, .keypad div, .keypad span {
+	pointer-events: auto;
+}
 .button {
 	display: block;
 	padding: 2px;
